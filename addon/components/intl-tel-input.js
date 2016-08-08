@@ -1,7 +1,7 @@
 /* global intlTelInputUtils */
 
-import Ember from 'ember';
-import layout from '../templates/components/intl-tel-input';
+import Ember from "ember";
+import layout from "../templates/components/intl-tel-input";
 
 export default Ember.TextField.extend({
   layout: layout,
@@ -119,9 +119,13 @@ export default Ember.TextField.extend({
   numberType: Ember.computed('number', {
     get() {
       if (this.get('hasUtilsScript')) {
-
         let typeNumber = this.$().intlTelInput('getNumberType');
-        for(let key in intlTelInputUtils.numberType) {
+
+        for (let key in intlTelInputUtils.numberType) {
+          if (!intlTelInputUtils.numberType.hasOwnProperty(key)) {
+            continue;
+          }
+
           if (intlTelInputUtils.numberType[key] === typeNumber) {
             return key;
           }
@@ -202,7 +206,8 @@ export default Ember.TextField.extend({
         return this.$().intlTelInput('getNumber', numberFormat);
       }
     },
-    set() { /* no-op */ }
+    set() { /* no-op */
+    }
   }),
 
   /**
@@ -217,7 +222,8 @@ export default Ember.TextField.extend({
     get() {
       return this.$().intlTelInput('getExtension');
     },
-    set() { /* no-op */ }
+    set() { /* no-op */
+    }
   }),
 
   /**
@@ -231,7 +237,8 @@ export default Ember.TextField.extend({
     get() {
       return this.$().intlTelInput('getSelectedCountryData');
     },
-    set() { /* no-op */ }
+    set() { /* no-op */
+    }
   }),
 
   /**
@@ -245,7 +252,8 @@ export default Ember.TextField.extend({
     get() {
       return this.$().intlTelInput('isValidNumber');
     },
-    set() { /* no-op */ }
+    set() { /* no-op */
+    }
   }),
 
   /**
@@ -260,14 +268,15 @@ export default Ember.TextField.extend({
     get() {
       if (this.get('hasUtilsScript')) {
         let errorNumber = this.$().intlTelInput('getValidationError');
-        for(let key in intlTelInputUtils.validationError) {
+        for (let key in intlTelInputUtils.validationError) {
           if (intlTelInputUtils.validationError[key] === errorNumber) {
             return key;
           }
         }
       }
     },
-    set() { /* no-op */ }
+    set() { /* no-op */
+    }
   }),
 
   /**
@@ -281,7 +290,8 @@ export default Ember.TextField.extend({
     get() {
       return (typeof intlTelInputUtils !== 'undefined');
     },
-    set() { /* no-op */ }
+    set() { /* no-op */
+    }
   }),
 
   /**
