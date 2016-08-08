@@ -4,9 +4,13 @@ import Ember from "ember";
 import layout from "../templates/components/intl-tel-input";
 
 export default Ember.TextField.extend({
+
   layout: layout,
+
   tagName: 'input',
+
   attributeBindings: ['type'],
+
   type: 'tel',
 
   /**
