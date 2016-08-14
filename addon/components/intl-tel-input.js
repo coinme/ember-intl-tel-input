@@ -2,8 +2,9 @@
 
 import Ember from "ember";
 import layout from "../templates/components/intl-tel-input";
+import InboundActions from 'ember-component-inbound-actions/inbound-actions';
 
-export default Ember.TextField.extend({
+export default Ember.TextField.extend(InboundActions, {
 
   layout: layout,
 
@@ -70,7 +71,7 @@ export default Ember.TextField.extend({
    * @type String
    * @default ""
    */
-  defaultCountry: '',
+  defaultCountry: 'US',
 
   /**
    * When setting `defaultCountry` to `"auto"`, we need to use a special
@@ -214,6 +215,26 @@ export default Ember.TextField.extend({
     }
   }),
 
+  formattedNumber: Ember.computed('hasUtilsScript', 'value', 'numberFormat', {
+    get(key, value) {
+      let number = this.get('number');
+
+      if (!number) {
+        return number;
+      }
+
+      let numberFormatName = this.get('numberFormat') || 'E164';
+      let numberFormatId = intlTelInputUtils.numberFormat[numberFormatName];
+      let countryCode = this.get('selectedCountryCode') || 'US';
+
+      // function formatNumber(number, countryCode, format) {
+      return intlTelInputUtils.formatNumber(number, countryCode, numberFormatId);
+    },
+    set() {
+
+    }
+  }),
+
   /**
    * Get the extension part of the current number, so if the number was
    * "+1 (702) 123-1234 ext. 12345" this would return "12345".
@@ -233,6 +254,12 @@ export default Ember.TextField.extend({
   /**
    * Get the country data for the currently selected flag.
    *
+   * Example: {
+   *     name: "Afghanistan",
+   *     iso2: "af",
+   *     dialCode: "93"
+   *  }
+   *
    * @property selectedCountryData
    * @type Object
    * @readOnly
@@ -243,6 +270,10 @@ export default Ember.TextField.extend({
     },
     set() { /* no-op */
     }
+  }),
+
+  selectedCountryCode: Ember.computed('selectedCountryData', function () {
+    return Ember.get(this.get('selectedCountryData'), 'iso2');
   }),
 
   /**
@@ -331,4 +362,24 @@ export default Ember.TextField.extend({
   willDestroyElement() {
     this.$().intlTelInput('destroy');
   },
+
+  nudgeFormatting() {
+    if (!this.get('hasUtilsScript')) {
+      return;
+    }
+
+    this.set('value', this.get('formattedNumber'));
+  },
+
+  insertNewline() {
+    this._super(...arguments);
+
+    this.nudgeFormatting();
+  },
+
+  focusOut() {
+    this.nudgeFormatting();
+
+    return this.sendAction('focus-out', this);
+  }
 });
