@@ -10,7 +10,7 @@ export default Ember.TextField.extend(InboundActions, {
 
   tagName: 'input',
 
-  attributeBindings: ['type'],
+  attributeBindings: ['type', 'pattern'],
 
   type: 'tel',
 
