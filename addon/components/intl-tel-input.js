@@ -1,12 +1,10 @@
 /* global intlTelInputUtils */
 
-// import Ember from "ember";
-import TextField from "@ember/component/text-field"
-import {computed} from "@ember/object"
+import Ember from "ember";
 import layout from "../templates/components/intl-tel-input";
 import InboundActions from 'ember-component-inbound-actions/inbound-actions';
 
-export default TextField.extend(InboundActions, {
+export default Ember.TextField.extend(InboundActions, {
 
   layout: layout,
 
@@ -123,7 +121,7 @@ export default TextField.extend(InboundActions, {
    * @type String
    * @default "MOBILE"
    */
-  numberType: computed('number', {
+  numberType: Ember.computed('number', {
     get() {
       if (this.get('hasUtilsScript')) {
         let typeNumber = this.$().intlTelInput('getNumberType');
