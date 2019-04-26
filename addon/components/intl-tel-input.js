@@ -1,10 +1,11 @@
 /* global intlTelInputUtils */
 
-import Ember from "ember";
 import layout from "../templates/components/intl-tel-input";
 import InboundActions from 'ember-component-inbound-actions/inbound-actions';
+import TextField from "@ember/component/text-field"
+import { computed, get } from '@ember/object'
 
-export default Ember.TextField.extend(InboundActions, {
+export default TextField.extend(InboundActions, {
 
   layout: layout,
 
@@ -121,7 +122,7 @@ export default Ember.TextField.extend(InboundActions, {
    * @type String
    * @default "MOBILE"
    */
-  numberType: Ember.computed('number', {
+  numberType: computed('number', {
     get() {
       if (this.get('hasUtilsScript')) {
         let typeNumber = this.$().intlTelInput('getNumberType');
@@ -182,7 +183,7 @@ export default Ember.TextField.extend(InboundActions, {
    * @default 'E164'
    */
   _numberFormat: 'E164',
-  numberFormat: Ember.computed('value', {
+  numberFormat: computed('value', {
     get() {
       return this.get('_numberFormat');
     },
@@ -204,7 +205,7 @@ export default Ember.TextField.extend(InboundActions, {
    * @type String
    * @readOnly
    */
-  number: Ember.computed('value', 'numberFormat', {
+  number: computed('value', 'numberFormat', {
     get() {
       if (this.get('hasUtilsScript')) {
         let numberFormat = intlTelInputUtils.numberFormat[this.get('numberFormat')];
@@ -215,7 +216,7 @@ export default Ember.TextField.extend(InboundActions, {
     }
   }),
 
-  formattedNumber: Ember.computed('hasUtilsScript', 'value', 'numberFormat', {
+  formattedNumber: computed('hasUtilsScript', 'value', 'numberFormat', {
     get(key, value) {
       let number = this.get('number');
 
@@ -243,7 +244,7 @@ export default Ember.TextField.extend(InboundActions, {
    * @type String
    * @readOnly
    */
-  extension: Ember.computed('number', {
+  extension: computed('number', {
     get() {
       return this.$().intlTelInput('getExtension');
     },
@@ -264,7 +265,7 @@ export default Ember.TextField.extend(InboundActions, {
    * @type Object
    * @readOnly
    */
-  selectedCountryData: Ember.computed('value', {
+  selectedCountryData: computed('value', {
     get() {
       return this.$().intlTelInput('getSelectedCountryData');
     },
@@ -272,8 +273,8 @@ export default Ember.TextField.extend(InboundActions, {
     }
   }),
 
-  selectedCountryCode: Ember.computed('selectedCountryData', function () {
-    return Ember.get(this.get('selectedCountryData'), 'iso2');
+  selectedCountryCode: computed('selectedCountryData', function () {
+    return get(this.get('selectedCountryData'), 'iso2');
   }),
 
   /**
@@ -283,7 +284,7 @@ export default Ember.TextField.extend(InboundActions, {
    * @type Boolean
    * @readOnly
    */
-  isValidNumber: Ember.computed('number', {
+  isValidNumber: computed('number', {
     get() {
       return this.$().intlTelInput('isValidNumber');
     },
@@ -299,7 +300,7 @@ export default Ember.TextField.extend(InboundActions, {
    * @type String
    * @readOnly
    */
-  validationError: Ember.computed('number', {
+  validationError: computed('number', {
     get() {
       if (this.get('hasUtilsScript')) {
         let errorNumber = this.$().intlTelInput('getValidationError');
@@ -321,7 +322,7 @@ export default Ember.TextField.extend(InboundActions, {
    * @type Boolean
    * @readOnly
    */
-  hasUtilsScript: Ember.computed({
+  hasUtilsScript: computed({
     get() {
       return (typeof intlTelInputUtils !== 'undefined');
     },

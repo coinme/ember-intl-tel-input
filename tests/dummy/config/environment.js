@@ -1,15 +1,21 @@
+'use strict';
+
 /* jshint node: true */
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'dummy',
-    environment: environment,
-    baseURL: '/',
+    environment,
+    rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
+        // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
       }
     },
 
@@ -37,22 +43,23 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.autoboot = false;
   }
 
   if (environment === 'production') {
-    ENV.baseURL = 'ember-intl-tel-input/';
+    ENV.rootURL = 'ember-intl-tel-input/';
 
-    ENV.googleAnalytics = {
-      webPropertyId: 'UA-49750808-3',
-      tracker: 'ga.js',
-    };
+    // ENV.googleAnalytics = {
+    //   webPropertyId: 'UA-49750808-3',
+    //   tracker: 'ga.js',
+    // };
   }
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
     'script-src': "'self'",
     'font-src': "'self' maxcdn.bootstrapcdn.com",
-    'connect-src': "'self' ipinfo.io",
+    // 'connect-src': "'self' ipinfo.io",
     'img-src': "'self'",
     'style-src': "'self' 'unsafe-inline' maxcdn.bootstrapcdn.com",
     'media-src': "'self'"

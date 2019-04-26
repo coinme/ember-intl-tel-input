@@ -1,8 +1,9 @@
-/* jshint node: true */
 'use strict';
+/* jshint node: true */
 
 module.exports = {
-  name: 'ember-intl-tel-input',
+  // name: 'ember-intl-tel-input',
+  name: require('./package').name,
 
   included: function(app) {
     // this._super.included(app);

@@ -1,12 +1,15 @@
-/* jshint node:true */
+'use strict';
+
+/*jshint node:true*/
 /* global require, module */
-var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var isProduction = EmberApp.env() === 'production';
-var path = require('path');
+const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+// var isProduction = EmberApp.env() === 'production';
+const path = require('path');
 
 module.exports = function(defaults) {
-  var app = new EmberAddon(defaults, {
+  let app = new EmberAddon(defaults, {
+    // Add options here
+
     sassOptions: {
       extension: 'scss',
       includePaths: [
@@ -34,7 +37,7 @@ module.exports = function(defaults) {
   });
 
   /*
-    This build file specifes the options for the dummy test app of this
+    This build file specifies the options for the dummy test app of this
     addon, located in `/tests/dummy`
     This build file does *not* influence how the addon or the app using it
     behave. You most likely want to be modifying `./index.js` or app's build file
@@ -47,9 +50,9 @@ module.exports = function(defaults) {
 
   importFromBower('bootstrap-sass/assets/javascripts/bootstrap.js');
 
-  if (!isProduction) {
-    importFromBower('es5-shim/es5-shim.js', { type: 'test' });
-  }
+  // if (!isProduction) {
+  //   importFromBower('es5-shim/es5-shim.js', { type: 'test' });
+  // }
 
   return app.toTree();
 };
