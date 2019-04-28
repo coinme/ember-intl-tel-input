@@ -1,8 +1,8 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import wait from 'ember-test-helpers/wait';
 import sinon from 'sinon';
-import Ember from 'ember';
 import jQuery from 'jquery';
+import { run } from '@ember/runloop'
 
 moduleForComponent('intl-tel-input', 'Unit | Component | intl-tel-input', {
   unit: true,
@@ -78,7 +78,7 @@ test('it syncs the component value to the input value', function(assert) {
   var component = this.subject();
   this.render();
 
-  Ember.run(() => {
+  run(() => {
     component.set('value', 'old value');
   });
 
@@ -86,7 +86,7 @@ test('it syncs the component value to the input value', function(assert) {
 
   assert.equal(el.val(), 'old value');
 
-  Ember.run(() => {
+  run(() => {
     el.val('new value');
     el.change();
   });
