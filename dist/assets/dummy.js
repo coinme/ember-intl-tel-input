@@ -106,26 +106,6 @@
 
   _exports.default = _default;
 });
-;define("dummy/components/code-block", ["exports", "ember-prism/components/code-block"], function (_exports, _codeBlock) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = _codeBlock.default;
-  _exports.default = _default;
-});
-;define("dummy/components/code-inline", ["exports", "ember-prism/components/code-inline"], function (_exports, _codeInline) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = _codeInline.default;
-  _exports.default = _default;
-});
 ;define("dummy/components/intl-tel-input", ["exports", "ember-intl-tel-input/components/intl-tel-input"], function (_exports, _intlTelInput) {
   "use strict";
 
@@ -350,24 +330,6 @@
     "block": "{\"symbols\":[\"&default\"],\"statements\":[[15,1],[0,\"\\n\"]],\"hasEval\":false}",
     "meta": {
       "moduleName": "dummy/templates/components/bootstrap-affix.hbs"
-    }
-  });
-
-  _exports.default = _default;
-});
-;define("dummy/templates/components/code-block", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-
-  var _default = Ember.HTMLBars.template({
-    "id": "2tQA6qw3",
-    "block": "{\"symbols\":[\"&default\"],\"statements\":[[7,\"code\"],[12,\"class\",[23,\"languageClass\"]],[9],[15,1],[10],[0,\"\\n\"]],\"hasEval\":false}",
-    "meta": {
-      "moduleName": "dummy/templates/components/code-block.hbs"
     }
   });
 
