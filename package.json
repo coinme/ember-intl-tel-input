@@ -30,7 +30,8 @@
     "start": "ember serve",
     "test": "ember test",
     "build": "ember build",
-    "test:all": "ember try:each"
+    "test:all": "ember try:each",
+    "resetup": "rm -rf node_modules; rm -rf bower_components; rm yarn.lock; bower install & yarn install; wait"
   },
   "dependencies": {
     "ember-cli-babel": "^7.1.2",

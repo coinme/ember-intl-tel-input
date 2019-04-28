@@ -5,7 +5,7 @@ package-lock.*
 *.iml
 
 # compiled output
-/dist/
+# /dist/ (so it can be imported downstream)
 /tmp/
 
 # dependencies
